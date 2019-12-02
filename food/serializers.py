@@ -45,10 +45,8 @@ class ServiceSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MealSerializer(serializers.HyperlinkedModelSerializer):
-    # categoryid = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = Meal
         fields = ('name', 'categoryid', 'price', 'description')
-
 

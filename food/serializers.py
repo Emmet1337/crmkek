@@ -20,7 +20,7 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name',)
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('name', 'surname', 'login', 'password', 'email', 'roleid', 'dateofadd', 'phone')
@@ -44,7 +44,7 @@ class ServiceSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name',)
 
 
-class MealSerializer(serializers.HyperlinkedModelSerializer):
+class MealSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Meal

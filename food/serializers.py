@@ -20,13 +20,15 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name',)
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    roleid = serializers.PrimaryKeyRelatedField(queryset=Role.objects.all())
     class Meta:
         model = User
         fields = ('name', 'surname', 'login', 'password', 'email', 'roleid', 'dateofadd', 'phone')
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    departmentid = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
     class Meta:
         model = Category
         fields = ('name', 'departmentid')
@@ -44,8 +46,8 @@ class ServiceSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name',)
 
 
-class MealSerializer(serializers.ModelSerializer):
-
+class MealSerializer(serializers.HyperlinkedModelSerializer):
+    categoryid = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     class Meta:
         model = Meal
         fields = ('name', 'categoryid', 'price', 'description')

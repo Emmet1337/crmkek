@@ -19,14 +19,14 @@ class User(models.Model):
     login = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    roleid = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='User')
+    roleid = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='user')
     dateofadd = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    departmentid = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='Department')
+    departmentid = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='department')
 
 
 class Status(models.Model):
@@ -39,6 +39,6 @@ class Service(models.Model):
 
 class Meal(models.Model):
     name = models.CharField(max_length=100)
-    categoryid = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='Category')
+    categoryid = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
     price = models.CharField(max_length=100)
     description = models.CharField(max_length=100)

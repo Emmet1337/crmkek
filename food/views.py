@@ -1,5 +1,5 @@
 from food.serializers import *
-from rest_framework import generics
+from rest_framework import generics, filters
 
 
 class TableListView(generics.ListAPIView):
@@ -25,6 +25,8 @@ class UserListView(generics.ListAPIView):
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['departmentid__name', ]
 
 
 class StatusListView(generics.ListAPIView):

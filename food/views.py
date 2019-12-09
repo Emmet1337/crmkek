@@ -6,6 +6,7 @@ from rest_framework import filters
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError, ValidationError
+import datetime
 
 
 class TableListView(APIView):
@@ -150,8 +151,6 @@ class UserListAPIView(generics.ListAPIView):
 class CategoryListView(APIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['departmentid__name', ]
 
     def get(self, request, department_id=None, *args, **kwargs):
         if department_id:
@@ -295,4 +294,149 @@ class MealListView(APIView):
             raise Http404
         else:
             meal.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class OrderView(APIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrderSerializer
+    def get(self, request, pk=None, *args, **kwargs):
+
+        days = request.query_params.get('days', None)
+        if days:
+            orders = self.queryset.filter(
+                date__gt=datetime.datetime.now() - datetime.timedelta(days=int(days))
+            ).order_by('-date')
+            serializer = self.serializer_class(orders, many=True)
+
+            return Response(serializer.data)
+
+        if pk:
+            try:
+                order = self.queryset.get(id=pk)
+            except Orders.DoesNotExist:
+                raise Http404
+            else:
+                serializer = self.serializer_class(order)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+
+        orders = self.queryset.all()
+        serializer = self.serializer_class(orders, many=True)
+
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        data = request.data.copy()
+
+        serializer = self.serializer_class(data=data)
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def perform_create(self, serializer):
+        serializer.save(waiter=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        order_id = request.data.get('id', None)
+
+        if order_id is None:
+            raise ParseError("field is required!")
+
+        try:
+            order = self.queryset.get(id=order_id)
+        except Orders.DoesNotExist:
+            raise Http404
+        else:
+            order.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class GetActiveOrderListView(APIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrderSerializer
+
+    def get(self, request):
+        orders = self.queryset.filter(isitopen=True)
+        serializer = self.serializer_class(orders, many=True)
+
+        return Response(serializer.data)
+
+
+class MealsToOrderView(APIView):
+    queryset = Orders.objects.all()
+    serializer_class = MealsToOrderSerializer
+
+    def get(self, request, *args, **kwargs):
+        order_id = request.query_params.get('order_id', None)
+        if order_id:
+            try:
+                order = self.queryset.get(id=order_id)
+            except Orders.DoesNotExist:
+                raise Http404
+
+            serializer = self.serializer_class(order)
+
+            return Response(serializer.data)
+
+        else:
+            raise ParseError("field is required!")
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid()
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def delete(self, request, *args, **kwargs):
+        order_id = request.data.get('order_id', None)
+        meal_id = request.data.get('meal_id', None)
+        if order_id is None:
+            raise ParseError("field is required!")
+        if meal_id is None:
+            raise ParseError("field is required!")
+        try:
+            order = self.queryset.get(id=order_id)
+        except Orders.DoesNotExist:
+            raise Http404
+        try:
+            meal = order.meals.get(id=meal_id)
+        except Meal.DoesNotExist:
+            raise Http404
+        meal.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CheckView(APIView):
+    queryset = Check.objects.all()
+    serializer_class = CheckSerializer
+
+    def get(self, request, *args, **kwargs):
+        checks = self.queryset.all()
+
+        serializer = self.serializer_class(checks, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        self._close_order(serializer.data['order_id'])
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def delete(self, request, *args, **kwargs):
+        check_id = request.data.get('id', None)
+
+        if check_id is None:
+            raise ParseError("field is required")
+
+        try:
+            check = self.queryset.get(id=check_id)
+        except Check.DoesNotExist:
+            raise Http404
+        else:
+            check.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)

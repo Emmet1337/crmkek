@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f12ec5a-e465-47cc-bae7-44b3ed2ff9a5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/crmkek.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/crmkek.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crmkek/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/crmkek/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/food/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/food/migrations/0002_auto_20191209_2210.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/food/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/food/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/food/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/food/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/food/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/food/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/food/views.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,20 +35,14 @@
   </component>
   <component name="ProjectId" id="1UPeTly87ePgkrVwk1D6EN43NmN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="crmkek" type="Python.DjangoServer" factoryName="Django server">
@@ -52,7 +52,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\crmkek\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -68,6 +68,18 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -85,7 +97,11 @@
       <workItem from="1575377161576" duration="7616000" />
       <workItem from="1575386290912" duration="1984000" />
       <workItem from="1575644886579" duration="246000" />
-      <workItem from="1575897603569" duration="11240000" />
+      <workItem from="1575897603569" duration="12062000" />
+      <workItem from="1575912731980" duration="1656000" />
+      <workItem from="1576570811659" duration="137000" />
+      <workItem from="1576570963077" duration="875000" />
+      <workItem from="1576571854603" duration="16550000" />
     </task>
     <servers />
   </component>
@@ -104,5 +120,23 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576571638008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1576571638008" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576580964431">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1576580964431" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1576571833519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1576571833519" />
+    <state x="655" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1576571863215">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="655" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1576571863215" />
   </component>
 </project>
